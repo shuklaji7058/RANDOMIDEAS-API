@@ -44,7 +44,7 @@ router.post("/", async (req, res) => {
 // Update idea
 router.put("/:id", async (req, res) => {
   try {
-    const UpdatedIdea = await Idea.findByIdAndUpdate(
+    const updatedIdea = await Idea.findByIdAndUpdate(
       req.params.id,
       {
         $set: {
@@ -54,14 +54,13 @@ router.put("/:id", async (req, res) => {
       },
       { new: true }
     );
-    res.json({ success: true, data: UpdatedIdea });
+    res.json({ success: true, data: updatedIdea });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, error: "Something went wrong" });
   }
 });
 
-// Delete idea
 // Delete idea
 router.delete("/:id", async (req, res) => {
   try {
